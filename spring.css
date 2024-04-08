@@ -1,0 +1,227 @@
+body {
+    background-color: #f8deee;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border-radius: 15%;
+}
+#easter-fact {
+    text-align: center;
+    font-size: 30px;
+    color:rgb(238, 135, 233);
+    margin: 100px auto;
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
+    max-width: 600px;
+}
+
+#fact {
+    background-color: rgb(148, 233, 222);
+    border: 1px;
+    color: white;
+    padding: 15px 32px;
+    position: absolute;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+#fact:hover {
+    background-color: cadetblue;
+}
+
+#fact {
+    display: none;
+}
+
+.rabbits {
+    all: unset;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .5em;
+    position: absolute;
+    left: 15%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    border-radius: 50px;
+    padding: 16px 24px;
+    box-shadow: inset 0 -4px 8px, salmon, 0 4px 6px black;
+    cursor: pointer;
+    color: blue;
+    transition: transform .4s cubic-bezier(.55,1,.15,1);
+    will-change: transform;
+    margin: 0 auto;
+}
+
+.rabbits:active {
+    transform: scale(.70);
+}
+
+.rabbits:active::after {
+    opacity: 1;
+}
+
+.rabbits::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-style:solid;
+    transform: scale(1.04, 1.08);
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: .4s;
+    transition-timing-function: cubic-bezier(.55,1,.15,1);
+    will-change: transform;
+}
+
+.btn {
+    all: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .5em;
+    position: absolute;
+    top: -20%;
+    left: 48%;
+    transform: translate(-50%, 50%);
+    border-radius: 50px;
+    padding: 16px 24px;
+    background-color: rgb(255, 249, 224); 
+    box-shadow: inset 0 -4px 8px, rgb(247, 245, 232), 0 4px 6px rgba(0, 0, 0, .2); 
+    cursor: pointer;
+    color: blue; 
+    transition: transform .4s cubic-bezier(.55, 1, .15, 1);
+    will-change: transform;
+    margin: 0 auto;
+}
+
+.btn:active {
+    transform: scale(.92);
+}
+
+.btn:active::after {
+    opacity: 1;
+}
+
+.btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-style: solid;
+    transform: scale(1.04, 1.08);
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: .4s;
+    transition-timing-function: cubic-bezier(.55, 1, .15,1);
+    will-change: transform;
+}
+
+.btn:focus-visible::after {
+    opacity: 1;
+    animation: pulsate 1s infinite;
+}
+
+
+.b-img {
+    width: 30em;
+    height: 30em;
+    object-fit: contain;
+}
+
+@keyframes pulsate {
+    0% {
+        transform: scale(1.04, 1.08)
+    }
+    50% {
+        transform: scale(1.09, 1.11)
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.ostara {
+    display: flex;
+    justify-content: center;
+    padding-left: 200px;
+} 
+
+.caption {
+    color:rgb(238, 135, 233);
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.cap {
+    color:rgb(22, 22, 20);
+    font-size: 1.5rem;
+    font-family: 'Dancing Script', cursive;
+    width: 100%;
+    bottom: -34%;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+figcaption {
+    color: rgb(22, 22, 20);
+    font-size: 3rem;
+    position: fixed;
+    font-family: 'Dancing Script', cursive;
+    width: 280%;
+    bottom: -12%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+} 
+
+
+.score {
+    font-family: "Sacramento", cursive;
+    font-size: 30px;
+    color:rgba(215, 164, 238, 0.2)
+}
+
+
+
+#blink_effect {
+    color: orange;
+    font-size: 70px;
+    transition: 2s;
+    font-family: 'Great Vibes';
+    color: #ace6eb;
+    text-align: center;
+    margin-top: 31px;
+    animation: colorBlink 5s infinite;
+}
+
+@keyframes colorBlink {
+    0% { color: rgb(155, 247, 209); }
+    25% { color: rgb(170, 213, 228); }
+    50% { color: lightgreen; }
+    75% { color: lightpink;}
+    100% { color: orange; }
+}
+
+.eastereggs {
+    position: absolute;
+    top: 33%;
+    left: 75%; 
+    transform: translateY(-50%);
+    width: 300px; /* Make sure the image width matches the width attribute in the HTML */
+    height: 300px; /* Make sure the image height matches the height attribute in the HTML */
+    border-radius: 40%;
+} 
+

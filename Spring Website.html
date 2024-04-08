@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<!-- FUN FACT GENERATOR! Like the user clicks a button and they get a new fun fact about spring/easter-->
+<html lang = "en-US">
+    <head>
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0"/>
+        <link rel = "stylesheet" href = "spring.css"/>
+        <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+        <link href = "https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel = "stylesheet">
+        <link href = "https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel = "stylesheet">
+        <title>Button</title>
+        <link href = "spring.css" rel = "stylesheet"/>
+        <style>  
+            canvas {
+                border:1px solid #d3d3d3;
+                background-color: #f1f1f1;
+                margin: auto;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                position: absolute;
+                border-radius: 2%;
+            }
+        </style>
+    </head>
+    <body>
+        <button id = "btn" class = "btn">
+            <img src = "spring.jpeg" alt = "Picture of Ostara, the famous goddess known for representing the beginning of Spring"
+            class = "jpeg"/>
+            <div class = "caption">
+                This is a picture of Ostara, a famous goddess known for representing the beginning of Spring/Easter.
+            </div>
+            <figcaption>
+                CLICK ON THE PICTURE OF OSTARA TO PLAY THE GAME!
+            </figcaption>
+        </button>
+
+        <h1 id = "blink_effect">Welcome to Spring</h1>
+
+        
+        <button id = "rabbits" class = "rabbits">
+        <img src = "bunnieseaster.jpeg"
+            alt = "A picture of 3 bunnies sitting together amongst easter eggs."
+            width = "300"
+            height = "300"
+        />
+        </div>
+        <div class = "cap">
+            CLICK ON THE IMAGE ABOVE FOR A FUN FACT GENERATOR ^
+        </div>
+        </button>
+
+         <eggs id = "eastereggs" class = "eastereggs">
+         <img src = "eastereggs.jpeg"
+             alt = "A picture of different colored easter eggs."
+            width = "300"
+            height = "300"
+         />
+         </eggs>
+
+         <p id= "easter-fact"> Click the button below for a random fact about Easter/Spring!</p>
+            <button id="fact"> Click for another fact!</button>
+            <div id="easter-fact"></div> 
+ 
+
+        <script>
+            
+            document.getElementById("btn").addEventListener("click", function() {
+                startGame();
+                hideButton();
+                hideh1();
+                hidethreerabbits();
+                hideeastereggs();
+            });
+            
+            
+
+            function hideButton() {
+                document.getElementById("btn").style.display = "none";
+            }
+
+            function hideh1() {
+                document.getElementById("blink_effect").style.display = "none";
+            }
+
+            function hidethreerabbits() {
+                document.getElementById("rabbits").style.display = "none";
+            }
+
+            function hideeastereggs() {
+                document.getElementById("eastereggs").style.display = "none";
+            }
+                
+                    // will be an array that we can randomly pick from.
+                    
+                    
+                   
+                    // lets see if this works properly! 
+
+            document.getElementById("rabbits").addEventListener("click", function(){
+                hideButton();
+                hideh1();
+                hidethreerabbits();
+                hideeastereggs();
+                
+                document.getElementById("fact").style.display = "block";
+                
+            console.log("test")
+            var placeholder = document.getElementById("easter-fact");
+            var fact = document.getElementById("fact");
+
+            var EasterFacts = [
+                "Easter eggs originated from the Medieval Times, in which a priest would hand out a hard boiled egg to a group of children. The children would pass the egg amongst themselves until midnight, and the lucky holder at that hour (12:00 am) would have the privilege of eating it!",
+                "Easter eggs were originally dyed to represent the blood of Jesus Christ. This idea originates from the early Christians in Mesopotamia.",
+                "The custom of the Easter Bunny began about 350 years ago in France/Belgium rural villages.",
+                "The NYC Bonnet Festival is the largest Easter parade, held in New York City. Those participating in the parade often dress up in their most ambitious costumes and bonnets.",
+                "During the Spring Equinox, there is a very popular myth that suggests that you are able to balance an egg on your head!",
+                "Cherry Blossoms are a popular symbol that represents the Spring season. Japan is especially known for holding Cherry Blossom festivals as an act of celebration for the new Spring season!",
+                "Many animals, such as lambs, chickens, and calves, give birth to their young during the Spring season. Thus, Spring is seen as a season of birth as well as new beginnings.",
+                "Daylight Savings Time begins in Spring, in which all of the clocks are set forward by one hour. This means that there is more daylight during the day!",
+                "Popular spring flowers, such as tulips and daffodils, are known for their vibrant and stunning colors. They represent the Spring season and it's new beginnings!",
+                "Animals such as frogs and salamanders emerge from hibernation during the Spring season and begin the processing of breeding."
+            ]
+
+            function ranFact() {
+                return EasterFacts[Math.floor(Math.random() * EasterFacts.length)];
+            }
+
+            fact.addEventListener('click', function() {
+                placeholder.textContent = ranFact();
+            });
+
+            }); 
+
+  
+
+
+            
+            // H1 TAG:
+            let blinking_text = document.getElementById('blink_effect');
+
+            var EasterBunny; 
+            var obstacles = [];
+            //var obstacle;
+            var score; // myScore
+            var background;
+            var gameSound;
+            const arrowKeys = {
+                37: "left",
+                39: "right",
+                38: "up",
+                40: "down"
+            };
+            let keycode = -1;
+
+            function startGame()
+            {
+                // myUpBtn = new component(30, 30, "blue", 50, 10);
+                // myDownBtn = new component(30, 30, "blue", 50, 70);
+                // myLeftBtn = new component(30, 30, "blue", 20, 40);
+                // myRightBtn = new component(30, 30, "blue", 80, 40);
+                obstacles.push(new component(10, 200, "green", 300, 120));
+                //obstacles.push(new component(20, 300, "green", 400, 200));
+                //obstacles.push(new component(30, 100, "green", 200, 320));
+
+                EasterBunny = new component(30, 30, "cutebunny.jpg", 10, 120, "image");
+                background = new component(1200, 700, "ogbackground.jpeg", 0, 0, "background");
+                //gameSound = new Audio("dramaticboom.mp3");
+                score = new component("32px", "Sacramento", "black", 280, 40, "text");
+                Easter.start();
+            }
+
+            var Easter = {
+                canvas : document.createElement("canvas"),
+                start : function() {
+                    this.canvas.width = 1200;
+                    this.canvas.height = 700;
+                    this.context = this.canvas.getContext("2d");
+                    document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+                    this.frameNo = 0;
+                    this.interval = setInterval(updateGameArea, 20);
+                    window.addEventListener('mousedown', function (e) {
+                        console.log("MOUSEDOWN")
+                        Easter.x = e.pageX;
+                        Easter.y = e.pageY;
+                    })
+                    window.addEventListener('mouseup', function (e) {
+                        console.log("MOUSEUP")
+
+                        Easter.x = false;
+                        Easter.y = false;
+                    })
+                    // window.addEventListener('touchmove', function(e) {
+                    //     Easter.x = e.touches[0].screenX;
+                    //     Easter.y = e.touches[0].screenY;
+                    // })
+                    window.addEventListener('keydown', function (e)
+                    {
+                        console.log("keydown")
+
+                        Easter.keys = (Easter.keys || []);
+                        keycode = e.keyCode
+                        Easter.keys[e.keyCode] = true;
+                    })
+                    window.addEventListener('keyup', function (e)
+                    {
+                        console.log("keyup")
+                        keycode = -1
+                        Easter.keys[e.keyCode] = false;
+                    })
+                },
+                clear : function() {
+                    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                },
+                stop : function() {
+                    clearInterval(this.interval);
+                }
+            }
+
+            // Let the user choose what character (image) they want to play as ?
+
+            function everyinterval(n) {
+                if ((Easter.frameNo / n) % 1 == 0) {return true;}
+                return false;
+            }
+    
+            function component(width, height, color, x, y, type) 
+            {
+                this.type = type;
+                if (type == "image" || type == "background") {
+                    this.image = new Image();
+                    this.image.src = color;
+                }
+                this.width = width;
+                this.height = height;
+                this.speedX = 0;
+                this.speedY = 0;
+                this.x = x;
+                this.y = y;
+
+                this.update = function () {
+                    ctx = Easter.context;
+                    // Score Down Below:
+                    if (this.type == "text") {
+                            ctx.font = this.width + " " + this.height;
+                            ctx.fillStyle = color;
+                            ctx.fillText(this.text, this.x, this.y);
+                    } else { 
+                        ctx.fillStyle = color;
+                        ctx.fillRect(this.x, this.y, this.width, this.height);
+                    }
+                    if (type == "image" || type == "background") { 
+                        console.log("The type is " + type);
+                        //^ ???
+                        ctx.drawImage(this.image,
+                        this.x,
+                        this.y,
+                        this.width, this.height);
+                        if (type == "background") {
+                            console.log("Drawing BACKGROUND")
+                            ctx.drawImage(this.image,
+                            this.x + this.width,
+                            this.y,
+                            this.width,
+                            this.height);
+                        }
+                        
+                    } else {
+                        ctx.fillStyle = color;
+                        ctx.fillRect(this.x, this.y, this.width, this.height);
+                    }   
+                }
+                
+                this.newPos = function() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.type == "background") {
+                    if (this.x == -(this.width)) {
+                        this.x = 0;
+                }
+                }
+
+                this.clicked = function() {
+                var myleft = this.x;
+                var myright = this.x + (this.width);
+                var mytop = this.y;
+                var mybottom = this.y + (this.height);
+                var clicked = true;
+                if ((mybottom < Easter.y) || (mytop > Easter.y) || (myright < Easter.x) || (myleft > Easter.x)) {
+                 clicked = false;
+                }
+                return clicked;
+                }
+            }
+
+            this.crashWith = function(otherobj) {
+            var myleft = this.x;
+            var myright = this.x + (this.width);
+            var mytop = this.y;
+            var mybottom = this.y + (this.height);
+            var otherleft = otherobj.x;
+            var otherright = otherobj.x + (otherobj.width);
+            var othertop = otherobj.y;
+            var otherbottom = otherobj.y + (otherobj.height);
+            var crash = true;
+            if ((mybottom < othertop) ||
+            (mytop > otherbottom) ||
+            (myright < otherleft) ||
+            (myleft > otherright)) {
+            crash = false;
+            }
+            return crash;
+            }
+        }
+    
+    
+            function updateGameArea() {
+                var x, height, gap, minHeight, maxHeight, minGap, maxGap;
+                for (i = 0; i < obstacles.length; i += 1) {
+                    if (EasterBunny.crashWith(obstacles[i])) {
+                        //gameSound.play();
+                        Easter.stop();
+                        return;
+                    }
+                }
+                Easter.clear();
+                background.speedX = -3;
+                background.newPos();
+                background.update();
+                EasterBunny.newPos();
+                EasterBunny.update();
+                Easter.frameNo += 1;
+                if (Easter.frameNo == 1 || everyinterval(88)) {
+                    x = Easter.canvas.width;
+                    minHeight = 20;
+                    maxHeight = 200;
+                    height = Math.floor(Math.random()*(maxHeight-minHeight+1) + minHeight);
+                    minGap = 50;
+                    maxGap = 200;
+                    console.log("X IS " + x)
+                    gap = Math.floor(Math.random()*(maxGap-minGap+1) + minGap);
+                    obstacles.push(new component(10, height, "green", x, 0));
+                    obstacles.push(new component(10, x - height - gap, "green", x, height + gap));
+                    //y = Easter.canvas.height - 200;
+                    //obstacles.push(new component(10, 200, "green", x, y));
+                }
+                for (i = 0; i < obstacles.length; i += 1) {
+                    obstacles[i].x += -2.05;
+                    obstacles[i].newPos();
+                    obstacles[i].update();
+                }
+                score.text = "S C O R E: " + Easter.frameNo;
+                score.update();
+
+                // obstacle.update();
+                // if (EasterBunny.crashWith(obstacle)) {
+                //     Easter.stop();
+                // } else {
+                //     Easter.clear();
+                //     obstacle.x += -1;
+                //     obstacle.update();
+                //     EasterBunny.newPos();
+                //     EasterBunny.update();
+                // }
+                // if (Easter.x && Easter.y) 
+                // {
+                //     if (myUpBtn.clicked()) {
+                //         EasterBunny.y -= 1;
+                //     }
+                //     if (myDownBtn.clicked()) {
+                //         EasterBunny.y += 1;
+                //     }
+                //     if (myLeftBtn.clicked()) {
+                //         EasterBunny.x += -1;
+                //     }
+                //     if (myRightBtn.clicked()) {
+                //         EasterBunny.x += 1;
+                //     }
+                // }
+                // myUpBtn.update();
+                // myDownBtn.update();
+                // myLeftBtn.update();
+                // myRightBtn.update();
+                EasterBunny.update();
+
+                if (Easter.x && Easter.y) {
+                    Easter.x = Easter.x;
+                    Easter.y = Easter.y;
+                }
+                if (keycode != -1 && (keycode >= 37 && keycode <= 40)) {
+                    move(arrowKeys[keycode])
+                } else {
+                    clearmove();
+                }
+                
+                
+            }
+            
+            function move(dir) {
+                EasterBunny.image.src = "bunnycharacter.jpg";
+                if (dir == "up") {EasterBunny.speedY = -1;}
+                if (dir == "down") {EasterBunny.speedY = 1;} 
+                if (dir == "left") {EasterBunny.speedX = -1;}
+                if (dir == "right") {EasterBunny.speedX = 0.7;}
+            }
+
+            function clearmove() {
+                EasterBunny.image.src = "cutebunny.jpg";
+                EasterBunny.speedX = 0;
+                EasterBunny.speedY = 0;
+            }
+
+            // end of updategame function
+    
+            function moveup() {
+                console.log("HERE")
+                EasterBunny.speedY -= 1;
+                EasterBunny.y -= 1;
+
+            }
+    
+            function movedown() {
+                EasterBunny.speedY += 1;
+                EasterBunny.y += 1;
+
+            }
+    
+            function moveleft() {
+                EasterBunny.speedX -= 1;
+                EasterBunny.x -= 1;
+
+            }
+    
+            function moveright() {
+                EasterBunny.speedX += 1;
+                EasterBunny.x += 1;
+
+            }
+    
+            function stopMoving() {
+                EasterBunny.speedY = 0;
+                EasterBunny.speedX = 0;
+            }
+            </script>
+            <!-- <button onmousedown="moveup()" onmouseup="stopMove()" ontouchstart="moveup()">UP</button>
+            <button onmousedown="movedown()" onmouseup="stopMove()" ontouchstart="movedown()">DOWN</button>
+            <button onmousedown="moveleft()" onmouseup="stopMove()" ontouchstart="moveleft()">LEFT</button>
+            <button onmousedown="moveright()" onmouseup="stopMove()" ontouchstart="moveright()">RIGHT</button>  -->
+            <!-- <button onclick = "moveup()">UP</button>
+    
+            <button onclick = "movedown()">DOWN</button>
+    
+            <button onclick = "moveleft()">LEFT</button>
+    
+            <button onclick = "moveright()">RIGHT</button>  -->      
+        </div>
+    </body>
+</html>
